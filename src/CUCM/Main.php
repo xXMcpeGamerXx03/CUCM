@@ -21,16 +21,18 @@ class Main extends PluginBase implements Listener {
         $player = $event->getPlayer();
         $msg = explode(" ", $event->getMessage());
         if ($event->getMessage()[0] == '/') {
-            $command = str_replace("/", "", $msg[0]);
-            if (Server::getInstance()->getCommandMap()->getCommand($command) == null) {
+            $command = substr($msg[0], 1);
+
+            if (($cmd = Server::getInstance()->getCommandMap()->getCommand($command)) == null) {
                 $event->setCancelled();
-                $player->sendMessage($cfg->get("Message"));
+                $player->sendMessage($cfg->get("Message"));         
             }
         } else if ($event->getMessage()[0] == '.' && $event->getMessage()[1] == '/') {
-            $command = str_replace([".", "/"], ["", ""], $msg[0]);
-            if (Server::getInstance()->getCommandMap()->getCommand($command) == null) {
+            $command = substr($msg[0], 2);
+
+            if (($cmd = Server::getInstance()->getCommandMap()->getCommand($command)) == null) {
                 $event->setCancelled();
-                $player->sendMessage($cfg->get("Message"));
+                $player->sendMessage($cfg->get("Message"));     
             }
         } else {
             return;
