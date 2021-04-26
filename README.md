@@ -1,2 +1,2 @@
 # CUCM
-Mit diesem Plugin kannst du die "Unknwon Command Message" ändern!
+With this Plugin you can change the "Unknown Command" Message!
